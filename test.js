@@ -76,8 +76,9 @@ exports['object-path-get'] = {
 	},
 	'values': function (test) {
 		var obj = getDefaultObject();
-		test.expect(5);
+		test.expect(6);
 		test.equal(getPath(obj, 'dataUndefined'), undefined, 'dataUndefined is wrong');
+		test.equal(getPath(obj, 'dataUndefined', 42), undefined, 'dataUndefined is wrong');
 		test.equal(getPath(obj, 'dataDate'), now, 'dataDate is wrong');
 		test.equal(getPath(obj, 'dataNumber'), 42, 'dataNumber is wrong');
 		test.equal(getPath(obj, 'dataString'), 'foo', 'dataString is wrong');
