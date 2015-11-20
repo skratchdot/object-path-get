@@ -34,6 +34,9 @@ getPath(obj, 'foo.invalidKey', 'cool'); // result: "cool"
 getPath(obj, 'foo|bar', null, '|'); // result: "baz" (with different delimiter)
 ```
 
+- [Live example on Tonic](https://tonicdev.com/npm/object-path-get)
+
+
 ## License
 
 Copyright (c) 2014 skratchdot  
