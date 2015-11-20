@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = exports = function (obj, path, defaultValue, delimiter) {
-	var arr, i;
+	var arr;
+	var i;
 	if (typeof path === 'string') {
 		arr = path.split(delimiter || '.');
 		for (i = 0; i < arr.length; i++) {

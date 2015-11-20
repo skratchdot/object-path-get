@@ -1,25 +1,8 @@
 'use strict';
-/*
-======== A Handy Little Nodeunit Reference ========
-https://github.com/caolan/nodeunit
-
-Test methods:
-	test.expect(numAssertions)
-	test.done()
-Test assertions:
-	test.ok(value, [message])
-	test.equal(actual, expected, [message])
-	test.notEqual(actual, expected, [message])
-	test.deepEqual(actual, expected, [message])
-	test.notDeepEqual(actual, expected, [message])
-	test.strictEqual(actual, expected, [message])
-	test.notStrictEqual(actual, expected, [message])
-	test.throws(block, [error], [message])
-	test.doesNotThrow(block, [error], [message])
-	test.ifError(value)
-*/
+var expect = require('chai').expect;
 var getPath = require('./index.js');
 var now = new Date();
+var obj;
 var getDefaultObject = function () {
 	return {
 		nested: {
@@ -39,58 +22,50 @@ var getDefaultObject = function () {
 	};
 };
 
-exports['object-path-get'] = {
-	setUp: function (done) {
-		// setup here
-		done();
-	},
-	'types': function (test) {
-		var obj = getDefaultObject();
-		test.expect(8);
-		test.equal(typeof getPath(obj, 'dataUndefined'), 'undefined', 'typeof dataUndefined is wrong');
-		test.equal(typeof getPath(obj, 'dataDate'), 'object', 'typeof dataDate is wrong');
-		test.equal(typeof getPath(obj, 'nested'), 'object', 'typeof nested is wrong');
-		test.equal(typeof getPath(obj, 'nested.thing'), 'object', 'typeof nested.thing is wrong');
-		test.equal(typeof getPath(obj, 'nested.thing.foo'), 'string', 'typeof nested.thing.foo is wrong');
-		test.equal(typeof getPath(obj, 'dataNumber'), 'number', 'typeof dataNumber is wrong');
-		test.equal(typeof getPath(obj, 'dataString'), 'string', 'typeof dataString is wrong');
-		test.equal(typeof getPath(obj, 'dataBoolean'), 'boolean', 'typeof dataBoolean is wrong');
-		test.done();
-	},
-	'missing': function (test) {
-		var obj = getDefaultObject();
-		test.expect(3);
-		test.equal(getPath(obj, 'invalidKey', 'wow'), 'wow', 'invalidKey should return default value (string)');
-		test.equal(getPath(obj, 'invalidKey', null), null, 'invalidKey should return default value (null)');
-		test.equal(getPath(obj, 'nested.invalidKey', 'nested'), 'nested', 'nested.invalidKey should return default value (string)');
-		test.done();
-	},
-	'delimiter': function (test) {
-		var obj = getDefaultObject();
-		test.expect(4);
-		test.equal(getPath(obj, 'nested.is.cool', null, '.'), true, 'nested.is.cool should be true with . delimiter');
-		test.equal(getPath(obj, 'nested|is|cool', null, '|'), true, 'nested|is|cool should be true with | delimiter');
-		test.equal(getPath(obj, 'nested|is|cool', null, '.'), null, 'nested|is|cool should be null with . delimiter');
-		test.equal(getPath(obj, 'nested|is|cool', null), null, 'nested|is|cool should be null with default delimiter');
-		test.done();
-	},
-	'values': function (test) {
-		var obj = getDefaultObject();
-		test.expect(6);
-		test.equal(getPath(obj, 'dataUndefined'), undefined, 'dataUndefined is wrong');
-		test.equal(getPath(obj, 'dataUndefined', 42), undefined, 'dataUndefined is wrong');
-		test.equal(getPath(obj, 'dataDate'), now, 'dataDate is wrong');
-		test.equal(getPath(obj, 'dataNumber'), 42, 'dataNumber is wrong');
-		test.equal(getPath(obj, 'dataString'), 'foo', 'dataString is wrong');
-		test.equal(getPath(obj, 'dataBoolean'), true, 'dataBoolean is wrong');
-		test.done();
-	},
-	'nested': function (test) {
-		var obj = getDefaultObject();
-		test.expect(3);
-		test.equal(typeof getPath(obj, 'nested'), 'object', 'nested should be an object');
-		test.equal(getPath(obj, 'nested.thing.foo'), 'bar', 'nested.thing.foo should be bar');
-		test.equal(getPath(obj, 'nested.is.cool'), true, 'nested.is.cool should be true');
-		test.done();
-	}
-};
+describe('object-get-path', function () {
+	beforeEach(function () {
+		obj = getDefaultObject();
+	});
+	it('should return the correct types', function () {
+		expect(getPath(obj, 'dataUndefined')).to.be.undefined;
+		expect(getPath(obj, 'dataDate')).to.be.an.object;
+		expect(getPath(obj, 'nested')).to.be.an.object;
+		expect(getPath(obj, 'nested.thing')).to.an.object;
+		expect(getPath(obj, 'nested.thing.foo')).to.be.a.string;
+		expect(getPath(obj, 'dataNumber')).to.be.a.number;
+		expect(getPath(obj, 'dataString')).to.be.a.string;
+		expect(getPath(obj, 'dataBoolean')).to.be.a.boolean;
+	});
+	it('should handle missing keys', function () {
+		expect(getPath(obj, 'invalidKey', 'wow')).to.equal('wow');
+		expect(getPath(obj, 'invalidKey', null)).to.equal(null);
+		expect(getPath(obj, 'nested.invalidKey', 'nested')).to.equal('nested');
+	});
+	it('should handle alternative delimiters', function () {
+		expect(getPath(obj, 'nested.is.cool', null, '.')).to.equal(true);
+		expect(getPath(obj, 'nested|is|cool', null, '|')).to.equal(true);
+		expect(getPath(obj, 'nested|is|cool', null, '.')).to.equal(null);
+		expect(getPath(obj, 'nested|is|cool', null)).to.equal(null);
+	});
+	it('should return the correct values', function () {
+		expect(getPath(obj, 'dataUndefined')).to.equal(undefined);
+		expect(getPath(obj, 'dataUndefined', 42)).to.equal(undefined);
+		expect(getPath(obj, 'dataDate')).to.equal(now);
+		expect(getPath(obj, 'dataNumber')).to.equal(42);
+		expect(getPath(obj, 'dataString')).to.equal('foo');
+		expect(getPath(obj, 'dataBoolean')).to.equal(true);
+	});
+	it('should handle nested data', function () {
+		expect(getPath(obj, 'nested')).to.be.an.object;
+		expect(getPath(obj, 'nested.thing.foo')).to.equal('bar');
+		expect(getPath(obj, 'nested.is.cool')).to.equal(true);
+	});
+	it('should return the default value when key is not a string', function () {
+		var defaultValue = Math.random();
+		expect(getPath(obj, {}, defaultValue)).to.equal(defaultValue);
+		expect(getPath(obj, [], defaultValue)).to.equal(defaultValue);
+		expect(getPath(obj, null, defaultValue)).to.equal(defaultValue);
+		expect(getPath(obj, 11, defaultValue)).to.equal(defaultValue);
+		expect(getPath(obj, undefined, defaultValue)).to.equal(defaultValue);
+	});
+});
