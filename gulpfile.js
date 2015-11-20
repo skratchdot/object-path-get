@@ -5,7 +5,6 @@ var eslint = require('gulp-eslint');
 var isparta = require('isparta');
 var istanbul = require('gulp-istanbul');
 var mocha = require('gulp-mocha');
-var nodeunit = require('gulp-nodeunit');
 var files = {
 	lint: ['*.js'],
 	src: ['index.js'],
@@ -23,11 +22,6 @@ gulp.task('lint', function () {
 		// To have the process exit with an error code (1) on
 		// lint error, return the stream and pipe to failAfterError last.
 		.pipe(eslint.failAfterError());
-});
-
-gulp.task('test', function () {
-	return gulp.src(files.test)
-		.pipe(nodeunit());
 });
 
 gulp.task('test', function () {
