@@ -3,7 +3,7 @@
 [![NPM version](https://badge.fury.io/js/object-path-get.svg)](http://badge.fury.io/js/object-path-get)
 [![Build Status](https://travis-ci.org/skratchdot/object-path-get.png?branch=master)](https://travis-ci.org/skratchdot/object-path-get)
 [![Code Climate](https://codeclimate.com/github/skratchdot/object-path-get.png)](https://codeclimate.com/github/skratchdot/object-path-get)
-[![Coverage Status](https://coveralls.io/repos/skratchdot/object-path-get/badge.png)](https://coveralls.io/r/skratchdot/object-path-get)
+[![Coverage Status](https://coveralls.io/repos/skratchdot/object-path-get/badge.svg?branch=master&service=github)](https://coveralls.io/github/skratchdot/object-path-get?branch=master)
 [![Dependency Status](https://david-dm.org/skratchdot/object-path-get.svg)](https://david-dm.org/skratchdot/object-path-get)
 [![devDependency Status](https://david-dm.org/skratchdot/object-path-get/dev-status.svg)](https://david-dm.org/skratchdot/object-path-get#info=devDependencies)
 
