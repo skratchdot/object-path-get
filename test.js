@@ -40,6 +40,7 @@ describe('object-get-path', function () {
 		expect(getPath(obj, 'invalidKey', 'wow')).to.equal('wow');
 		expect(getPath(obj, 'invalidKey', null)).to.equal(null);
 		expect(getPath(obj, 'nested.invalidKey', 'nested')).to.equal('nested');
+		expect(getPath(obj, '', 'DEFAULT')).to.equal('DEFAULT');
 	});
 	it('should handle alternative delimiters', function () {
 		expect(getPath(obj, 'nested.is.cool', null, '.')).to.equal(true);
@@ -60,10 +61,15 @@ describe('object-get-path', function () {
 		expect(getPath(obj, 'nested.thing.foo')).to.equal('bar');
 		expect(getPath(obj, 'nested.is.cool')).to.equal(true);
 	});
+	it('should accept arrays as path', function () {
+		// special use case
+		expect(getPath(obj, [], 'DEFAULT')).to.equal(obj);
+		expect(getPath(obj, ['dataDate'])).to.equal(now);
+		expect(getPath(obj, ['nested', 'is', 'cool'])).to.equal(true);
+	});
 	it('should return the default value when key is not a string', function () {
 		var defaultValue = Math.random();
 		expect(getPath(obj, {}, defaultValue)).to.equal(defaultValue);
-		expect(getPath(obj, [], defaultValue)).to.equal(defaultValue);
 		expect(getPath(obj, null, defaultValue)).to.equal(defaultValue);
 		expect(getPath(obj, 11, defaultValue)).to.equal(defaultValue);
 		expect(getPath(obj, undefined, defaultValue)).to.equal(defaultValue);
