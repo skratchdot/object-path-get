@@ -4,7 +4,8 @@
   "description": "get values from javascript objects by specifying a path",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "prepublish": "gulp test && gulp lint"
   },
   "author": "skratchdot",
   "license": "MIT",
