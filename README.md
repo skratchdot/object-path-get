@@ -35,6 +35,11 @@ getPath(obj, 'foo|bar', null, '|'); // result: "baz" (with different delimiter)
 getPath(obj, ['foo', 'bar']); // result "baz" (with array path)
 ```
 
+
+## Links
+
+- [Source Code](https://github.com/skratchdot/object-path-get)
+- [Changelog](https://github.com/skratchdot/object-path-get/blob/master/CHANGELOG.md)
 - [Live example on Tonic](https://tonicdev.com/npm/object-path-get)
 
 
