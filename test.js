@@ -65,9 +65,16 @@ describe('object-get-path', function () {
 		// special use case
 		expect(getPath(obj, [], 'DEFAULT')).to.equal(obj);
 		expect(getPath(obj, ['dataDate'])).to.equal(now);
+		expect(getPath(obj, ['nested'])).to.be.an.object;
+		expect(getPath(obj, ['nested', 'thing', 'foo'])).to.equal('bar');
 		expect(getPath(obj, ['nested', 'is', 'cool'])).to.equal(true);
 	});
-	it('should return the default value when key is not a string', function () {
+	it('should handle invalid array paths', function () {
+		expect(getPath(obj, [''], 'DEFAULT')).to.equal('DEFAULT');
+		expect(getPath(obj, ['invalid'], 'DEFAULT')).to.equal('DEFAULT');
+		expect(getPath(obj, ['nested', 'invalid'], 'DEFAULT')).to.equal('DEFAULT');
+	});
+	it('should return the default value when key is not a string or array', function () {
 		var defaultValue = Math.random();
 		expect(getPath(obj, {}, defaultValue)).to.equal(defaultValue);
 		expect(getPath(obj, null, defaultValue)).to.equal(defaultValue);
