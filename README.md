@@ -32,6 +32,7 @@ var obj = {foo:{bar:'baz'}};
 getPath(obj, 'foo.bar'); // result: "baz"
 getPath(obj, 'foo.invalidKey', 'cool'); // result: "cool"
 getPath(obj, 'foo|bar', null, '|'); // result: "baz" (with different delimiter)
+getPath(obj, ['foo', 'bar']); // result "baz" (with array path)
 ```
 
 - [Live example on Tonic](https://tonicdev.com/npm/object-path-get)
