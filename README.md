@@ -24,7 +24,7 @@ as a module.
 
 ## Getting Started
 
-Install the module with: `npm install object-path-get`
+Install the module with: `npm install --save object-path-get`
 
 ```javascript
 var getPath = require('object-path-get');
@@ -39,7 +39,7 @@ getPath(obj, ['foo', 'bar']); // result "baz" (with array path)
 
 * [Source Code](https://github.com/skratchdot/object-path-get)
 * [Changelog](https://github.com/skratchdot/object-path-get/blob/master/CHANGELOG.md)
-* [Live example on Tonic](https://tonicdev.com/npm/object-path-get)
+* [Live example on Runkit](https://npm.runkit.com/object-path-get)
 
 ## Contributors
 
