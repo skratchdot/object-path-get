@@ -1,11 +1,13 @@
 <a name="Unreleased"></a>
-## Unreleased (2018-02-24)
+## Unreleased (2018-02-25)
 
 * add prettier and `npm run build` ([ef101c1](https://github.com/skratchdot/object-path-get/commit/ef101c1))
 * adding `npm run watch` ([9948c22](https://github.com/skratchdot/object-path-get/commit/9948c22))
+* adding contributors ([103f3f1](https://github.com/skratchdot/object-path-get/commit/103f3f1))
 * only run travis on node versions >= 4.0 ([e5cf3b6](https://github.com/skratchdot/object-path-get/commit/e5cf3b6))
+* travis runs node 6+ ([7a928b8](https://github.com/skratchdot/object-path-get/commit/7a928b8))
 * update travis config ([e2e8369](https://github.com/skratchdot/object-path-get/commit/e2e8369))
-* updating changelog and changelog generator ([a9e3f78](https://github.com/skratchdot/object-path-get/commit/a9e3f78))
+* updating changelog and changelog generator ([587c9b6](https://github.com/skratchdot/object-path-get/commit/587c9b6))
 * updating libs and moving to jest ([a64e222](https://github.com/skratchdot/object-path-get/commit/a64e222))
 
 
