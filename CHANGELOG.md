@@ -6,11 +6,12 @@
 * adding `npm run watch` ([9948c22](https://github.com/skratchdot/object-path-get/commit/9948c22))
 * adding contributors ([9e8304a](https://github.com/skratchdot/object-path-get/commit/9e8304a))
 * only run travis on node versions >= 4.0 ([e5cf3b6](https://github.com/skratchdot/object-path-get/commit/e5cf3b6))
+* rename tonic to runkit ([054b09f](https://github.com/skratchdot/object-path-get/commit/054b09f))
 * travis runs node 6+ ([7a928b8](https://github.com/skratchdot/object-path-get/commit/7a928b8))
 * update travis config ([e2e8369](https://github.com/skratchdot/object-path-get/commit/e2e8369))
 * updating changelog and changelog generator ([587c9b6](https://github.com/skratchdot/object-path-get/commit/587c9b6))
 * updating libs and moving to jest ([a64e222](https://github.com/skratchdot/object-path-get/commit/a64e222))
-* use prettier on markdown files ([bf96098](https://github.com/skratchdot/object-path-get/commit/bf96098))
+* use prettier on markdown files ([626112f](https://github.com/skratchdot/object-path-get/commit/626112f))
 
 <a name="1.0.0"></a>
 
