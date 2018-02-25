@@ -2,7 +2,7 @@ module.exports = function(obj, path, defaultValue, delimeter = ".") {
     let found = false
     
     for (const segment of path.split(delimiter)) {
-        if (!(segment in obj)) {
+        if (typeof obj !== "object" || !(segment in obj)) {
             found = false
             break
         }
