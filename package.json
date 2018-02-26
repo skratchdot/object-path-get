@@ -4,16 +4,20 @@
   "description": "get values from javascript objects by specifying a path",
   "main": "index.js",
   "scripts": {
-    "changelog": "github_changelog_generator -u skratchdot -p object-path-get",
-    "clean": "rimraf .nyc_output/ coverage/",
-    "cover": "nyc npm test",
+    "build": "npm-run-all changelog format lint cover",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s -u -r 0",
+    "clean": "rimraf coverage/",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "cover": "npm test -- --coverage",
     "coveralls": "cat coverage/lcov.info | coveralls --verbose",
+    "format": "prettier --single-quote --write '*{.js,.md}' '.*.js'",
     "lint": "eslint *.js",
-    "prepublish": "npm-run-all lint test",
-    "test": "mocha test.js",
+    "prepublish": "npm run build",
+    "test": "jest test.js",
     "watch": "npm-run-all clean --parallel watch:test watch:lint",
     "watch:lint": "watch 'npm run lint' .",
-    "watch:test": "npm run test -- -w"
+    "watch:test": "npm run test -- --watch"
   },
   "author": "skratchdot",
   "license": "MIT",
@@ -26,21 +30,22 @@
     "url": "https://github.com/skratchdot/object-path-get"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "coveralls": "^2.11.12",
-    "eslint": "^3.4.0",
-    "mocha": "^3.0.2",
-    "npm-run-all": "^3.0.0",
-    "nyc": "^8.1.0",
-    "rimraf": "^2.5.4"
+    "all-contributors-cli": "^4.11.0",
+    "conventional-changelog-cli": "^1.3.14",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.18.1",
+    "jest": "^22.4.2",
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.10.2",
+    "rimraf": "^2.6.2"
   },
-  "tonicExampleFilename": ".tonic.example.js",
-  "nyc": {
-    "all": true,
-    "include": [
+  "runkitExampleFilename": ".runkit.example.js",
+  "jest": {
+    "verbose": true,
+    "collectCoverageFrom": [
       "index.js"
     ],
-    "reporter": [
+    "coverageReporters": [
       "text",
       "html",
       "lcovonly"
