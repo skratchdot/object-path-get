@@ -1,20 +1,17 @@
-'use strict';
+"use strict";
 
-module.exports = exports = function(obj, path, defaultValue, delimiter) {
-  if (typeof path === 'string') {
-    path = path.split(delimiter || '.');
-  }
-  if (Array.isArray(path)) {
-    var len = path.length;
-    for (var i = 0; i < len; i++) {
-      if (obj && (obj.hasOwnProperty(path[i]) || obj[path[i]])) {
-        obj = obj[path[i]];
-      } else {
-        return defaultValue;
-      }
+module.exports = function(obj, path, defaultValue, delimeter) {
+    let found = false
+    
+    for (const segment of path.split(delimiter || ".")) {
+        if (typeof obj !== "object" || obj === null || !(segment in obj)) {
+            found = false
+            break
+        }
+        
+        obj = obj[segment]
+        found = true
     }
-    return obj;
-  } else {
-    return defaultValue;
-  }
-};
+    
+    return found ? obj : defaultValue
+}
