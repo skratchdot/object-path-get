@@ -37,9 +37,9 @@ getPath(obj, ['foo', 'bar']); // result "baz" (with array path)
 
 ## Links
 
-* [Source Code](https://github.com/skratchdot/object-path-get)
-* [Changelog](https://github.com/skratchdot/object-path-get/blob/master/CHANGELOG.md)
-* [Live example on Runkit](https://npm.runkit.com/object-path-get)
+- [Source Code](https://github.com/skratchdot/object-path-get)
+- [Changelog](https://github.com/skratchdot/object-path-get/blob/master/CHANGELOG.md)
+- [Live example on Runkit](https://npm.runkit.com/object-path-get)
 
 ## Contributors
 
